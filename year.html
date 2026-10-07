@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0f3a35">
+<title>Пивний рік</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Alumni+Sans:wght@600;800&family=Golos+Text:wght@400;500;700&display=swap">
+<style>
+:root {
+  --table: #0f3a35;        /* лакований зелений стіл */
+  --table-hi: #17504a;
+  --on-table: #e4f1ec;
+  --on-table-dim: #a9cdc4;
+  --board: #f6f3ec;        /* картон бірдекеля */
+  --rasp: #c41d55;         /* малиновий сауер */
+  --rasp-deep: #9e1543;
+  --apricot: #f08a1c;
+  --amber-ink: #a8540a;  /* абрикос, що читається на картоні */
+  --navy: #1c2452;
+  --hop: #2f7a35;
+  --porter: #3a1d12;
+  --lemon: #f2cf2a;
+  --rubber: #1b1d1c;
+  --nub: #333735;
+  --display: "Dela Gothic One", "Golos Text", system-ui, sans-serif;
+  --cond: "Alumni Sans", "Arial Narrow", system-ui, sans-serif;
+  --body: "Golos Text", "Segoe UI", system-ui, sans-serif;
+  --drop: 0 2px 3px rgb(0 0 0 / .25), 0 14px 28px -8px rgb(0 0 0 / .45);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scrollbar-color: var(--table-hi) var(--table); }
+body {
+  margin: 0; color: var(--on-table); font: 400 1rem/1.5 var(--body); min-height: 100vh;
+  background:
+    radial-gradient(circle at 82% 9%, transparent 58px, rgb(0 0 0 / .13) 60px, rgb(0 0 0 / .05) 64px, transparent 67px),
+    radial-gradient(circle at 12% 47%, transparent 70px, rgb(0 0 0 / .1) 72px, transparent 77px),
+    radial-gradient(circle at 90% 78%, transparent 52px, rgb(0 0 0 / .11) 54px, transparent 59px),
+    radial-gradient(120% 80% at 50% 0%, var(--table-hi), var(--table) 70%);
+}
+::selection { background: var(--rasp); color: var(--board); }
+:focus-visible { outline: 3px solid var(--lemon); outline-offset: 4px; }
+.num { font-variant-numeric: tabular-nums; }
+
+main { max-width: 1040px; margin: 0 auto; padding: 40px 16px 64px; display: grid; gap: 56px; }
+
+/* Бірдекель: картон, дві фарби, друкована рамка */
+.coaster {
+  --ink: var(--rasp); --r: 0deg;
+  container-type: inline-size;
+  position: relative; background: var(--board); color: var(--ink);
+  box-shadow: inset 0 0 0 7px var(--board), inset 0 0 0 9px var(--ink), var(--drop);
+  transform: rotate(var(--r));
+}
+.coaster::after { /* фактура пульпи */
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: .5; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .5 0 0 0 0 .42 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.round { border-radius: 50%; aspect-ratio: 1; display: grid; place-content: center; text-align: center; padding: 12%; }
+.square { border-radius: 22px; padding: 30px 26px 26px; }
+.square h2, .square h3 { font: 400 1.35rem/1.1 var(--display); margin: 0 0 16px; text-wrap: balance; }
+.label { font: 800 1.05rem/1 var(--cond); letter-spacing: .08em; text-transform: uppercase; }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+.hero-coaster { --r: -4deg; width: 100%; max-width: 470px; justify-self: center; gap: 4px; }
+.hero-coaster .label { font-size: 6.4cqi; color: var(--navy); }
+.hero-coaster h1 { font: 400 8.6cqi/1 var(--display); margin: 6px 0 0; text-wrap: balance; }
+.hero-coaster .big { font: 400 27cqi/.9 var(--display); letter-spacing: -.03em; margin-top: 4cqi; }
+.hero-coaster p { margin: 2cqi 0 0; font: 500 4.6cqi/1.25 var(--body); color: var(--navy); }
+.hero-coaster .wet { position: absolute; inset: 9% 9% auto auto; width: 34%; aspect-ratio: 1; border-radius: 50%;
+  box-shadow: 0 0 0 3px rgb(196 29 85 / .14), inset 0 0 0 5px rgb(196 29 85 / .07); pointer-events: none; }
+
+.facts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 16px; }
+.facts li { gap: 2px; padding: 15%; }
+.facts b { font: 400 25cqi/1 var(--display); }
+.facts small { font: 600 14cqi/1.05 var(--cond); letter-spacing: .02em; color: var(--navy); }
+.facts li:nth-child(1) { --ink: var(--navy); --r: 5deg; }
+.facts li:nth-child(2) { --ink: var(--hop); --r: -6deg; }
+.facts li:nth-child(3) { --ink: var(--amber-ink); --r: 3deg; }
+.facts li:nth-child(4) { --ink: var(--porter); --r: -3deg; }
+.facts li:nth-child(5) { --ink: var(--rasp); --r: 7deg; }
+.facts li:nth-child(6) { --ink: var(--navy); --r: -5deg; }
+.facts li:nth-child(3) small, .facts li:nth-child(5) small { color: var(--porter); }
+
+/* Сауер — залитий малиною */
+.sour { --ink: var(--board); --r: 1.5deg; background: var(--rasp); color: var(--board);
+  box-shadow: inset 0 0 0 7px var(--rasp), inset 0 0 0 9px var(--board), var(--drop);
+  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 28px 36px; align-items: center; padding: 36px; border-radius: 28px; }
+.sour::after { opacity: .35; }
+.donut { width: clamp(200px, 30vw, 280px); aspect-ratio: 1; border-radius: 50%; position: relative; display: grid; place-content: center; text-align: center;
+  background: conic-gradient(var(--board) 0 59.8%, var(--lemon) 0 67.1%, var(--porter) 0 73.9%, var(--apricot) 0 80.4%, #f7b6cb 0 84.9%, var(--navy) 0 88.5%, var(--hop) 0 91.9%, var(--rasp-deep) 0 100%);
+  box-shadow: 0 0 0 4px var(--rasp), 0 0 0 6px rgb(255 255 255 / .5); }
+.donut::before { content: ""; position: absolute; inset: 22%; border-radius: 50%; background: var(--rasp); }
+.donut > * { position: relative; }
+.donut b { font: 400 clamp(2.6rem, 7vw, 3.6rem)/1 var(--display); }
+.donut span { font: 800 1rem/1 var(--cond); letter-spacing: .1em; text-transform: uppercase; }
+.sour h2 { font: 400 clamp(1.6rem, 4.4vw, 2.5rem)/1.08 var(--display); margin: 0 0 12px; text-wrap: balance; }
+.sour p { margin: 0 0 18px; font-weight: 500; max-width: 46ch; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 18px; font: 600 1.1rem/1.2 var(--cond); }
+.legend li { display: flex; gap: 8px; align-items: center; }
+.legend li::before { content: ""; flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 1.5px rgb(255 255 255 / .55); }
+.legend li span { margin-left: auto; }
+
+/* Рейтинги на квадратних бірдекелях */
+.lists { display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 26px; align-items: start; }
+.lists > :nth-child(1) { --ink: var(--navy); --r: -1.5deg; }
+.lists > :nth-child(2) { --ink: var(--hop); --r: 2deg; margin-top: 30px; }
+.lists > :nth-child(3) { --ink: var(--rasp-deep); --r: -2.5deg; margin-top: 8px; }
+ol.rank { list-style: none; margin: 0; padding: 0; display: grid; }
+ol.rank li { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr) auto; gap: 10px; align-items: baseline; padding: 9px 0; border-top: 1.5px dashed color-mix(in srgb, var(--ink) 40%, transparent); }
+ol.rank .pos { font: 400 1rem/1 var(--display); }
+ol.rank .name { color: #222; font-weight: 700; line-height: 1.25; min-width: 0; overflow-wrap: anywhere; }
+ol.rank .name small { display: block; font-weight: 400; color: #555; font-size: .85rem; }
+ol.rank .cnt { font: 800 1.35rem/1 var(--cond); }
+ol.rank li:first-child .name { font: 400 1.12rem/1.2 var(--display); color: var(--ink); }
+
+/* Гумовий барний килимок: кожен шип = 20 позицій */
+.mats { display: grid; grid-template-columns: 1.6fr 1fr; gap: 26px; align-items: start; }
+.mat { background: var(--rubber); border-radius: 18px; padding: 26px 22px 18px; box-shadow: var(--drop), inset 0 0 0 2px #2a2d2b; }
+.mat h2 { font: 400 clamp(1.4rem, 3.6vw, 2rem)/1.1 var(--display); margin: 0 0 4px; color: var(--board); }
+.mat h2 em { font-style: normal; color: var(--apricot); }
+.mat p { margin: 0 0 18px; color: #b9bfbc; font-size: .92rem; }
+.chart { width: 100%; height: auto; display: block; overflow: visible; }
+.chart text { font: 700 15px var(--cond); fill: #b9bfbc; letter-spacing: .04em; }
+.chart .v { fill: var(--board); font-size: 16px; }
+.chart .hi { fill: var(--apricot); }
+
+/* Рекорди — переверни бірдекель */
+.records-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 20px; }
+.records-head h2 { font: 400 clamp(1.6rem, 4.4vw, 2.5rem)/1.1 var(--display); margin: 0; }
+.records-head p { margin: 0; color: var(--on-table-dim); }
+.records { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
+.flip { all: unset; display: block; cursor: pointer; perspective: 900px; aspect-ratio: 1; width: 100%; border-radius: 50%; -webkit-tap-highlight-color: transparent; }
+.flip:focus-visible { outline: 3px solid var(--lemon); outline-offset: 6px; }
+.flip .card { position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.16, 1, .3, 1); transform: rotate(var(--r)); }
+.flip[aria-pressed="true"] .card { transform: rotate(var(--r)) rotateY(180deg); }
+.flip .face { position: absolute; inset: 0; transform: none; backface-visibility: hidden; -webkit-backface-visibility: hidden; gap: 6px; padding: 14%; }
+.flip .face.back { transform: rotateY(180deg); background: var(--ink); color: var(--board); box-shadow: inset 0 0 0 7px var(--ink), inset 0 0 0 9px var(--board), var(--drop); }
+.face .label { font: 400 11cqi/1.1 var(--display); letter-spacing: 0; text-transform: none; text-wrap: balance; }
+.face.front .tap { font: 600 8cqi/1 var(--cond); color: #666; letter-spacing: .06em; text-transform: uppercase; margin-top: 6px; }
+.face.back b { font: 400 10.5cqi/1.1 var(--display); overflow-wrap: anywhere; text-wrap: balance; }
+.face.back small { font: 500 6.6cqi/1.25 var(--body); }
+.records li:nth-child(1) { --ink: var(--rasp); --r: -4deg; }
+.records li:nth-child(2) { --ink: var(--porter); --r: 3deg; }
+.records li:nth-child(3) { --ink: var(--hop); --r: -2deg; }
+.records li:nth-child(4) { --ink: var(--navy); --r: 5deg; }
+.records li:nth-child(5) { --ink: var(--amber-ink); --r: -5deg; }
+.records li:nth-child(6) { --ink: var(--rasp-deep); --r: 2deg; }
+
+footer { color: var(--on-table-dim); font-size: .88rem; display: grid; gap: 6px; max-width: 72ch; border-top: 1px solid rgb(255 255 255 / .12); padding-top: 18px; }
+
+@media (max-width: 860px) {
+  .hero, .mats, .lists { grid-template-columns: minmax(0, 1fr); }
+  .lists > * { margin-top: 0 !important; }
+  .records { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+}
+@media (max-width: 600px) {
+  main { gap: 44px; padding-top: 28px; }
+  .sour { grid-template-columns: minmax(0, 1fr); justify-items: center; padding: 30px 22px; }
+  .legend { width: 100%; }
+  .facts { gap: 12px 8px; }
+  .records { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.empty { max-width: 440px; width: 100%; justify-self: center; margin-top: 8vh; gap: 10px; --r: -3deg; }
+.empty h1 { font: 400 2rem/1 var(--display); margin: 0; }
+.empty p { margin: 0; color: var(--navy); }
+.empty a { color: inherit; text-underline-offset: 3px; }
+
+/* Один момент руху: бірдекелі лягають на стіл */
+@media (prefers-reduced-motion: no-preference) {
+  .drop { animation: land .9s cubic-bezier(.16, 1, .3, 1) both; animation-delay: calc(var(--i, 0) * 70ms); }
+  @keyframes land { from { transform: translateY(-14px) scale(1.06) rotate(calc(var(--r) - 6deg)); } }
+}
+@media (prefers-reduced-motion: reduce) { .flip .card { transition: none; } }
+</style>
+</head>
+<body>
+<main id="app">
+  <section class="coaster round empty" id="empty" hidden>
+    <span class="label">Pubbratym</span>
+    <h1>Пивний рік</h1>
+    <p>Цю сторінку відкривають із бота <a href="https://t.me/Pubbratym_bot">@Pubbratym_bot</a>: кнопка «📊 Мій пивний рік».</p>
+  </section>
+</main>
+
+<script>
+const NS = "http://www.w3.org/2000/svg";
+const GEN = ["січня", "лютого", "березня", "квітня", "травня", "червня", "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"];
+const NOM = ["Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"];
+const SHORT = ["січ", "лют", "бер", "кві", "тра", "чер", "лип", "сер", "вер", "жов", "лис", "гру"];
+const DAYS = ["Понеділок", "Вівторок", "Середа", "Четвер", "Пʼятниця", "Субота", "Неділя"];
+const DSHORT = ["пн", "вт", "ср", "чт", "пт", "сб", "нд"];
+const GROUP = {  // колір на діаграмі; заголовок, якщо стиль року — цей
+  "Сауер": ["var(--board)", "Ти людина кислого"], "IPA": ["var(--lemon)", "Хміль — твоя релігія"],
+  "Портер і стаут": ["var(--porter)", "Темна сторона — твоя"], "Лагер і пілс": ["var(--apricot)", "Класика без зайвого"],
+  "Сидр": ["#f7b6cb", "Яблучна душа"], "Ель та інше": ["var(--navy)", "Широкий смак"],
+  "Пшеничне": ["var(--hop)", "Пшеничний настрій"], "Без даних": ["var(--rasp-deep)", ""],
+};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const n = x => x % 1 ? `${Math.floor(x) || ""}½` : `${x}`;
+const pl = (x, [one, few, many]) => { const k = Math.floor(x) % 100, m = k % 10; return k > 10 && k < 20 ? many : m === 1 ? one : m >= 2 && m <= 4 ? few : many; };
+const day = iso => { const [, m, d] = iso.split("-").map(Number); return `${d} ${GEN[m - 1]}`; };
+const big = x => x >= 1000 ? `${x < 10000 ? (x / 1000).toFixed(1).replace(".", ",") : Math.round(x / 1000)}К` : `${x}`;
+const dec = x => String(x).replace(".", ",");
+
+function decode() {
+  try {
+    const b = atob(location.hash.slice(1).replace(/-/g, "+").replace(/_/g, "/"));
+    return JSON.parse(new TextDecoder().decode(Uint8Array.from(b, c => c.charCodeAt(0))));
+  } catch { return null; }
+}
+
+function rank(title, tag, rows, style) {
+  if (!rows.length) return "";
+  return `<div class="coaster square" style="${style}"><${tag}>${title}</${tag}><ol class="rank">` +
+    rows.map(([name, sub, q], i) => `<li><span class="pos">${i + 1}</span><span class="name">${esc(name)}${sub ? `<small>${esc(sub)}</small>` : ""}</span><span class="cnt">${n(q)}</span></li>`).join("") +
+    `</ol></div>`;
+}
+
+function render(d) {
+  const year = d.y, to = d.to, tm = Number(to.slice(5, 7)), R = d.r;
+  const groups = d.g.filter(([g]) => g !== "Без даних"), lead = groups[0];
+  const share = lead ? Math.round(lead[1] / d.p * 100) : 0;
+  let acc = 0;
+  const cone = d.g.map(([g, q]) => { const a = acc; acc += q / d.p * 100; return `${GROUP[g][0]} ${a}% ${acc}%`; }).join(", ");
+  const mo = d.mo.indexOf(Math.max(...d.mo)), wd = d.wd.indexOf(Math.max(...d.wd));
+  const facts = [
+    [d.e, pl(d.e, ["вечір у барі", "вечори в барі", "вечорів у барі"])],
+    [d.s, pl(d.s, ["сорт", "різні сорти", "різних сортів"])],
+    [d.b, pl(d.b, ["пивоварня", "пивоварні", "пивоварень"])],
+    [d.st, pl(d.st, ["стиль за Untappd", "стилі за Untappd", "стилів за Untappd"])],
+    d.a != null && [`${dec(d.a)}%`, "середня міцність"],
+    [big(d.m), "грн за цінами меню"],
+  ].filter(Boolean);
+  const rec = [
+    R.big && ["Найбільший вечір", `${day(R.big[0])} — ${n(R.big[1])} ${pl(R.big[1], ["позиція", "позиції", "позицій"])}`, "рекорд за один вечір"],
+    R.strong && ["Найміцніше", R.strong[0], `${dec(R.strong[1])}%`],
+    R.best && ["Найвищий рейтинг Untappd", R.best[0], `${dec(R.best[1])} на Untappd`],
+    R.worst && ["Найнижчий рейтинг", R.worst[0], `${dec(R.worst[1])} — але ти його пив`],
+    R.first && ["Перше пиво року", R.first[0], day(R.first[1])],
+    R.last && ["Останнє", R.last[0], day(R.last[1])],
+  ].filter(Boolean);
+  const noStyle = (d.g.find(([g]) => g === "Без даних") || [0, 0])[1];
+
+  document.title = `Пивний рік ${year} · ${d.n}`;
+  document.getElementById("app").innerHTML = `
+  <section class="hero" aria-label="Підсумок року">
+    <div class="coaster round hero-coaster drop num">
+      <span class="wet" aria-hidden="true"></span>
+      <span class="label">Pubbratym · 1 січня — ${day(to)} ${year}</span>
+      <h1>${esc(d.n)}, твій пивний рік</h1>
+      <div class="big">${n(d.p).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}</div>
+      <p>${pl(d.p, ["пивна позиція", "пивні позиції", "пивних позицій"])} на твоїй картці</p>
+    </div>
+    <ul class="facts num">${facts.map(([b, s], i) => `<li class="coaster round drop" style="--i:${i + 1}"><b>${b}</b><small>${s}</small></li>`).join("")}</ul>
+  </section>
+
+  ${lead ? `<section class="coaster sour num" aria-label="Стиль року">
+    <div class="donut" role="img" aria-label="Частки стилів: ${d.g.map(([g, q]) => `${g} ${Math.round(q / d.p * 100)}%`).join(", ")}" style="background:conic-gradient(${cone})">
+      <b>${share}%</b><span>${lead[0]}</span>
+    </div>
+    <div>
+      <h2>${GROUP[lead[0]][1]}</h2>
+      <p>${lead[0]} — ${share}% усього, що ти випив цього року.</p>
+      <ul class="legend">${d.g.map(([g, q]) => `<li style="--c:${GROUP[g][0]}">${g} <span>${n(q)}</span></li>`).join("")}</ul>
+    </div>
+  </section>` : ""}
+
+  <section class="lists num" aria-label="Рейтинги">
+    ${rank("Твоя ротація", "h2", d.t, "--ink:var(--navy);--r:-1.5deg")}
+    ${rank("Пивоварні", "h3", d.br.map(([b, q]) => [b, "", q]), "--ink:var(--hop);--r:2deg")}
+    ${rank("Стилі за Untappd", "h3", d.ss.map(([s, q]) => [s, "", q]), "--ink:var(--rasp-deep);--r:-2.5deg")}
+  </section>
+
+  <section class="mats num" aria-label="Коли ти пив">
+    <div class="mat">
+      <h2>${NOM[mo]} — пік: <em>${n(d.mo[mo])}</em></h2>
+      <p id="unit-m"></p>
+      <svg class="chart" id="months" role="img" aria-label="Позиції по місяцях: ${d.mo.map((v, i) => `${NOM[i]} ${n(v)}`).join(", ")}"></svg>
+    </div>
+    <div class="mat">
+      <h2>${DAYS[wd]} — <em>твій день</em></h2>
+      <p id="unit-d"></p>
+      <svg class="chart" id="days" role="img" aria-label="Позиції по днях тижня: ${d.wd.map((v, i) => `${DAYS[i]} ${n(v)}`).join(", ")}"></svg>
+    </div>
+  </section>
+
+  ${rec.length ? `<section aria-labelledby="rec">
+    <div class="records-head"><h2 id="rec">Рекорди року</h2><p>Переверни бірдекель.</p></div>
+    <ul class="records">${rec.map(([t, b, s]) => `<li><button class="flip" aria-pressed="false"><span class="card">
+      <span class="coaster round face front"><span class="label">${t}</span><span class="tap">переверни</span></span>
+      <span class="coaster round face back"><b>${esc(b)}</b><small>${esc(s)}</small></span></span></button></li>`).join("")}</ul>
+  </section>` : ""}
+
+  <footer>
+    <span>Дані: чеки Poster на твою картку з 1 січня по ${day(to)} ${year}, стилі, міцність і рейтинги — Untappd.</span>
+    <span>Позиція — один рядок у чеку: келих, літр чи банка; половинки — розлиті навпіл.${noStyle ? ` Для ${n(noStyle)} ${pl(noStyle, ["позиції", "позицій", "позицій"])} стиль не знайшовся.` : ""} Цифри живуть лише в цьому посиланні.</span>
+  </footer>`;
+
+  mat("months", d.mo.map((v, i) => [SHORT[i], v]), "unit-m", `Позиції по місяцях.${tm === d.mo.length ? ` ${NOM[tm - 1]} ще триває.` : ""}`);
+  mat("days", d.wd.map((v, i) => [DSHORT[i], v]), "unit-d", "Позиції по днях тижня.");
+  document.querySelectorAll(".flip").forEach(b => b.addEventListener("click", () => b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") !== "true")));
+}
+
+function el(tag, attrs, text) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; return e; }
+// Килимок із шипами: ціна шипа підбирається так, щоб найвища колонка мала до 13 шипів.
+function mat(id, data, noteId, note) {
+  const max = Math.max(...data.map(d => d[1]), 1), unit = [1, 2, 5, 10, 20, 25, 50, 100, 200].find(u => max / u <= 13) || 500;
+  const rows = Math.ceil(max / unit), svg = document.getElementById(id), step = 22, r = 7.5, colW = 34, top = 26, W = data.length * colW, H = top + rows * step + 26;
+  document.getElementById(noteId).textContent = `${note} Один шип — ${unit} ${pl(unit, ["позиція", "позиції", "позицій"])}.`;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  data.forEach(([label, v], i) => {
+    const cx = i * colW + colW / 2, filled = Math.round(v / unit), hi = v === max;
+    for (let k = 0; k < rows; k++)
+      svg.append(el("circle", { cx, cy: top + (rows - 1 - k) * step + step / 2, r, fill: k < filled ? (hi ? "var(--apricot)" : "var(--rasp)") : "var(--nub)" }));
+    if (v) svg.append(el("text", { x: cx, y: top + (rows - filled) * step - 6, "text-anchor": "middle", class: hi ? "v hi" : "v" }, n(v)));
+    svg.append(el("text", { x: cx, y: H - 4, "text-anchor": "middle" }, label));
+  });
+}
+
+const data = decode();
+if (data) render(data); else document.getElementById("empty").hidden = false;
+</script>
+</body>
+</html>
