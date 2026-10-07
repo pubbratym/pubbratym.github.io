@@ -232,7 +232,7 @@ function render(d) {
   const mo = d.mo.indexOf(Math.max(...d.mo)), wd = d.wd.indexOf(Math.max(...d.wd));
   const facts = [
     [d.e, pl(d.e, ["вечір у барі", "вечори в барі", "вечорів у барі"])],
-    [d.s, pl(d.s, ["сорт", "різні сорти", "різних сортів"])],
+    [d.s, pl(d.s, ["різний сорт", "різні сорти", "різних сортів"])],
     [d.b, pl(d.b, ["пивоварня", "пивоварні", "пивоварень"])],
     [d.st, pl(d.st, ["стиль за Untappd", "стилі за Untappd", "стилів за Untappd"])],
     d.a != null && [`${dec(d.a)}%`, "середня міцність"],
@@ -256,7 +256,7 @@ function render(d) {
       <span class="label">Pubbratym · 1 січня — ${day(to)} ${year}</span>
       <h1>${esc(d.n)}, твій пивний рік</h1>
       <div class="big">${n(d.p).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}</div>
-      <p>${pl(d.p, ["пивна позиція", "пивні позиції", "пивних позицій"])} на твоїй картці</p>
+      <p>${pl(d.p, ["пивна позиція", "пивні позиції", "пивних позицій"])} за рік</p>
     </div>
     <ul class="facts num">${facts.map(([b, s], i) => `<li class="coaster round drop" style="--i:${i + 1}"><b>${b}</b><small>${s}</small></li>`).join("")}</ul>
   </section>
@@ -299,7 +299,7 @@ function render(d) {
   </section>` : ""}
 
   <footer>
-    <span>Дані: чеки Poster на твою картку з 1 січня по ${day(to)} ${year}, стилі, міцність і рейтинги — Untappd.</span>
+    <span>Дані: твої чеки в Poster з 1 січня по ${day(to)} ${year}, стилі, міцність і рейтинги — Untappd.</span>
     <span>Позиція — один рядок у чеку: келих, літр чи банка; половинки — розлиті навпіл.${noStyle ? ` Для ${n(noStyle)} ${pl(noStyle, ["позиції", "позицій", "позицій"])} стиль не знайшовся.` : ""} Цифри живуть лише в цьому посиланні.</span>
   </footer>`;
 
