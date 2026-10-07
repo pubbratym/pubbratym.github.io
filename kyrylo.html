@@ -4,223 +4,317 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#0f3a35">
 <title>Кирилів пивний рік</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Alumni+Sans:wght@600;800&family=Golos+Text:wght@400;500;700&display=swap">
 <style>
-/* Layout: one narrow column of "pours" — each section is a statement, the sour share is the one loud moment. Single deliberate look: raspberry-sour night. */
 :root {
-  --bg: #1d0b1a;          /* темна малина */
-  --panel: #2b1127;
-  --line: #4a2343;
-  --fg: #fbe9f1;
-  --muted: #c49ab5;
-  --sour: #ff6f9f;        /* фруктовий сауер */
-  --apricot: #ffb15a;     /* абрикос-маракуя */
-  --display: "Unbounded", "Arial Black", system-ui, sans-serif;
-  --body: "Onest", "Segoe UI", system-ui, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --table: #0f3a35;        /* лакований зелений стіл */
+  --table-hi: #17504a;
+  --on-table: #e4f1ec;
+  --on-table-dim: #a9cdc4;
+  --board: #f6f3ec;        /* картон бірдекеля */
+  --rasp: #c41d55;         /* малиновий сауер */
+  --rasp-deep: #9e1543;
+  --apricot: #f08a1c;
+  --amber-ink: #a8540a;  /* абрикос, що читається на картоні */
+  --navy: #1c2452;
+  --hop: #2f7a35;
+  --porter: #3a1d12;
+  --lemon: #f2cf2a;
+  --rubber: #1b1d1c;
+  --nub: #333735;
+  --display: "Dela Gothic One", "Golos Text", system-ui, sans-serif;
+  --cond: "Alumni Sans", "Arial Narrow", system-ui, sans-serif;
+  --body: "Golos Text", "Segoe UI", system-ui, sans-serif;
+  --drop: 0 2px 3px rgb(0 0 0 / .25), 0 14px 28px -8px rgb(0 0 0 / .45);
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; }
-body { background: var(--bg); color: var(--fg); font: 400 1rem/1.55 var(--body); }
-main { max-width: 760px; margin: 0 auto; padding-inline: 20px; padding-block: 48px 72px; display: grid; gap: 72px; }
-h1, h2, .big { font-family: var(--display); text-wrap: balance; margin: 0; }
-.eyebrow { font: 500 .75rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-section { display: grid; gap: 20px; }
-h2 { font-size: clamp(1.4rem, 4.2vw, 2rem); font-weight: 700; line-height: 1.15; }
-p { margin: 0; max-width: 60ch; color: var(--muted); }
+html { scrollbar-color: var(--table-hi) var(--table); }
+body {
+  margin: 0; color: var(--on-table); font: 400 1rem/1.5 var(--body); min-height: 100vh;
+  background:
+    radial-gradient(circle at 82% 9%, transparent 58px, rgb(0 0 0 / .13) 60px, rgb(0 0 0 / .05) 64px, transparent 67px),
+    radial-gradient(circle at 12% 47%, transparent 70px, rgb(0 0 0 / .1) 72px, transparent 77px),
+    radial-gradient(circle at 90% 78%, transparent 52px, rgb(0 0 0 / .11) 54px, transparent 59px),
+    radial-gradient(120% 80% at 50% 0%, var(--table-hi), var(--table) 70%);
+}
+::selection { background: var(--rasp); color: var(--board); }
+:focus-visible { outline: 3px solid var(--lemon); outline-offset: 4px; }
 .num { font-variant-numeric: tabular-nums; }
 
+main { max-width: 1040px; margin: 0 auto; padding: 40px 16px 64px; display: grid; gap: 56px; }
+
+/* Бірдекель: картон, дві фарби, друкована рамка */
+.coaster {
+  --ink: var(--rasp); --r: 0deg;
+  container-type: inline-size;
+  position: relative; background: var(--board); color: var(--ink);
+  box-shadow: inset 0 0 0 7px var(--board), inset 0 0 0 9px var(--ink), var(--drop);
+  transform: rotate(var(--r));
+}
+.coaster::after { /* фактура пульпи */
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: .5; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .5 0 0 0 0 .42 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.round { border-radius: 50%; aspect-ratio: 1; display: grid; place-content: center; text-align: center; padding: 12%; }
+.square { border-radius: 22px; padding: 30px 26px 26px; }
+.square h2, .square h3 { font: 400 1.35rem/1.1 var(--display); margin: 0 0 16px; text-wrap: balance; }
+.label { font: 800 1.05rem/1 var(--cond); letter-spacing: .08em; text-transform: uppercase; }
+
 /* Hero */
-.hero { gap: 18px; }
-.hero h1 { font-size: clamp(2rem, 7vw, 3.6rem); font-weight: 900; line-height: 1.02; }
-.hero h1 em { font-style: normal; color: var(--sour); }
-.pour { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
-.pour .big { font-size: clamp(4.2rem, 19vw, 9.5rem); font-weight: 900; line-height: .9; color: var(--apricot); letter-spacing: -.03em; }
-.pour span { font: 500 1.05rem/1.3 var(--body); color: var(--fg); max-width: 14ch; }
+.hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+.hero-coaster { --r: -4deg; width: 100%; max-width: 470px; justify-self: center; gap: 4px; }
+.hero-coaster .label { font-size: 6.4cqi; color: var(--navy); }
+.hero-coaster h1 { font: 400 8.6cqi/1 var(--display); margin: 6px 0 0; text-wrap: balance; }
+.hero-coaster .big { font: 400 27cqi/.9 var(--display); letter-spacing: -.03em; margin-top: 4cqi; }
+.hero-coaster p { margin: 2cqi 0 0; font: 500 4.6cqi/1.25 var(--body); color: var(--navy); }
+.hero-coaster .wet { position: absolute; inset: 9% 9% auto auto; width: 34%; aspect-ratio: 1; border-radius: 50%;
+  box-shadow: 0 0 0 3px rgb(196 29 85 / .14), inset 0 0 0 5px rgb(196 29 85 / .07); pointer-events: none; }
 
-.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
-.facts div { padding: 16px 12px 16px 0; border-bottom: 1px solid var(--line); display: grid; gap: 4px; }
-.facts b { font: 700 1.6rem/1 var(--display); }
-.facts small { color: var(--muted); font-size: .85rem; }
-@media (max-width: 520px) { .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.facts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 16px; }
+.facts li { gap: 2px; padding: 15%; }
+.facts b { font: 400 25cqi/1 var(--display); }
+.facts small { font: 600 14cqi/1.05 var(--cond); letter-spacing: .02em; color: var(--navy); }
+.facts li:nth-child(1) { --ink: var(--navy); --r: 5deg; }
+.facts li:nth-child(2) { --ink: var(--hop); --r: -6deg; }
+.facts li:nth-child(3) { --ink: var(--amber-ink); --r: 3deg; }
+.facts li:nth-child(4) { --ink: var(--porter); --r: -3deg; }
+.facts li:nth-child(5) { --ink: var(--rasp); --r: 7deg; }
+.facts li:nth-child(6) { --ink: var(--navy); --r: -5deg; }
+.facts li:nth-child(3) small, .facts li:nth-child(5) small { color: var(--porter); }
 
-/* Sour moment */
-.sour { background: var(--sour); color: var(--bg); border-radius: 28px; padding: 32px 24px; gap: 14px; }
-.sour .eyebrow { color: color-mix(in srgb, var(--bg) 70%, var(--sour)); }
-.sour .big { font-size: clamp(4rem, 17vw, 8rem); font-weight: 900; line-height: .9; letter-spacing: -.03em; }
-.sour p { color: var(--bg); font-weight: 500; }
-.stack { display: flex; height: 18px; border-radius: 9px; overflow: hidden; background: color-mix(in srgb, var(--bg) 25%, var(--sour)); }
-.stack i { display: block; height: 100%; }
-.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font: 500 .8rem/1.3 var(--mono); }
-.legend span { display: inline-flex; align-items: center; gap: 6px; }
-.legend span::before { content: ""; width: 10px; height: 10px; border-radius: 3px; background: var(--c); }
+/* Сауер — залитий малиною */
+.sour { --ink: var(--board); --r: 1.5deg; background: var(--rasp); color: var(--board);
+  box-shadow: inset 0 0 0 7px var(--rasp), inset 0 0 0 9px var(--board), var(--drop);
+  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 28px 36px; align-items: center; padding: 36px; border-radius: 28px; }
+.sour::after { opacity: .35; }
+.donut { width: clamp(200px, 30vw, 280px); aspect-ratio: 1; border-radius: 50%; position: relative; display: grid; place-content: center; text-align: center;
+  background: conic-gradient(var(--board) 0 59.8%, var(--lemon) 0 67.1%, var(--porter) 0 73.9%, var(--apricot) 0 80.4%, #f7b6cb 0 84.9%, var(--navy) 0 88.5%, var(--hop) 0 91.9%, var(--rasp-deep) 0 100%);
+  box-shadow: 0 0 0 4px var(--rasp), 0 0 0 6px rgb(255 255 255 / .5); }
+.donut::before { content: ""; position: absolute; inset: 22%; border-radius: 50%; background: var(--rasp); }
+.donut > * { position: relative; }
+.donut b { font: 400 clamp(2.6rem, 7vw, 3.6rem)/1 var(--display); }
+.donut span { font: 800 1rem/1 var(--cond); letter-spacing: .1em; text-transform: uppercase; }
+.sour h2 { font: 400 clamp(1.6rem, 4.4vw, 2.5rem)/1.08 var(--display); margin: 0 0 12px; text-wrap: balance; }
+.sour p { margin: 0 0 18px; font-weight: 500; max-width: 46ch; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 18px; font: 600 1.1rem/1.2 var(--cond); }
+.legend li { display: flex; gap: 8px; align-items: center; }
+.legend li::before { content: ""; flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 1.5px rgb(255 255 255 / .55); }
+.legend li span { margin-left: auto; }
 
-/* Ranked lists */
+/* Рейтинги на квадратних бірдекелях */
+.lists { display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 26px; align-items: start; }
+.lists > :nth-child(1) { --ink: var(--navy); --r: -1.5deg; }
+.lists > :nth-child(2) { --ink: var(--hop); --r: 2deg; margin-top: 30px; }
+.lists > :nth-child(3) { --ink: var(--rasp-deep); --r: -2.5deg; margin-top: 8px; }
 ol.rank { list-style: none; margin: 0; padding: 0; display: grid; }
-ol.rank li { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--line); }
-ol.rank li:first-child { border-top: 1px solid var(--line); }
-.pos { font: 700 1rem/1 var(--display); color: var(--sour); }
-.name { font-weight: 600; min-width: 0; overflow-wrap: anywhere; }
-.name small { display: block; font-weight: 400; color: var(--muted); font-size: .85rem; }
-.cnt { font: 500 .95rem/1 var(--mono); color: var(--apricot); }
-ol.rank li:first-child .name { font: 700 clamp(1.05rem, 3.4vw, 1.35rem)/1.2 var(--display); }
+ol.rank li { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr) auto; gap: 10px; align-items: baseline; padding: 9px 0; border-top: 1.5px dashed color-mix(in srgb, var(--ink) 40%, transparent); }
+ol.rank .pos { font: 400 1rem/1 var(--display); }
+ol.rank .name { color: #222; font-weight: 700; line-height: 1.25; min-width: 0; overflow-wrap: anywhere; }
+ol.rank .name small { display: block; font-weight: 400; color: #555; font-size: .85rem; }
+ol.rank .cnt { font: 800 1.35rem/1 var(--cond); }
+ol.rank li:first-child .name { font: 400 1.12rem/1.2 var(--display); color: var(--ink); }
 
-.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
-@media (max-width: 640px) { .two { grid-template-columns: 1fr; } }
-
-/* Charts */
-.chart { width: 100%; height: auto; display: block; }
-.chart text { fill: var(--muted); font: 500 11px var(--mono); }
-.chart .val { fill: var(--fg); }
+/* Гумовий барний килимок: кожен шип = 20 позицій */
+.mats { display: grid; grid-template-columns: 1.6fr 1fr; gap: 26px; align-items: start; }
+.mat { background: var(--rubber); border-radius: 18px; padding: 26px 22px 18px; box-shadow: var(--drop), inset 0 0 0 2px #2a2d2b; }
+.mat h2 { font: 400 clamp(1.4rem, 3.6vw, 2rem)/1.1 var(--display); margin: 0 0 4px; color: var(--board); }
+.mat h2 em { font-style: normal; color: var(--apricot); }
+.mat p { margin: 0 0 18px; color: #b9bfbc; font-size: .92rem; }
+.chart { width: 100%; height: auto; display: block; overflow: visible; }
+.chart text { font: 700 15px var(--cond); fill: #b9bfbc; letter-spacing: .04em; }
+.chart .v { fill: var(--board); font-size: 16px; }
 .chart .hi { fill: var(--apricot); }
 
-/* Records */
-.records { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-.records div { background: var(--panel); border-radius: 18px; padding: 18px; display: grid; gap: 6px; align-content: start; }
-.records b { font: 700 1.15rem/1.25 var(--display); overflow-wrap: anywhere; }
-.records .eyebrow { color: var(--sour); }
-.records small { color: var(--muted); }
-@media (max-width: 520px) { .records { grid-template-columns: 1fr; } }
+/* Рекорди — переверни бірдекель */
+.records-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 20px; }
+.records-head h2 { font: 400 clamp(1.6rem, 4.4vw, 2.5rem)/1.1 var(--display); margin: 0; }
+.records-head p { margin: 0; color: var(--on-table-dim); }
+.records { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
+.flip { all: unset; display: block; cursor: pointer; perspective: 900px; aspect-ratio: 1; width: 100%; border-radius: 50%; -webkit-tap-highlight-color: transparent; }
+.flip:focus-visible { outline: 3px solid var(--lemon); outline-offset: 6px; }
+.flip .card { position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.16, 1, .3, 1); transform: rotate(var(--r)); }
+.flip[aria-pressed="true"] .card { transform: rotate(var(--r)) rotateY(180deg); }
+.flip .face { position: absolute; inset: 0; transform: none; backface-visibility: hidden; -webkit-backface-visibility: hidden; gap: 6px; padding: 14%; }
+.flip .face.back { transform: rotateY(180deg); background: var(--ink); color: var(--board); box-shadow: inset 0 0 0 7px var(--ink), inset 0 0 0 9px var(--board), var(--drop); }
+.face .label { font: 400 11cqi/1.1 var(--display); letter-spacing: 0; text-transform: none; text-wrap: balance; }
+.face.front .tap { font: 600 8cqi/1 var(--cond); color: #666; letter-spacing: .06em; text-transform: uppercase; margin-top: 6px; }
+.face.back b { font: 400 10.5cqi/1.1 var(--display); overflow-wrap: anywhere; text-wrap: balance; }
+.face.back small { font: 500 6.6cqi/1.25 var(--body); }
+.records li:nth-child(1) { --ink: var(--rasp); --r: -4deg; }
+.records li:nth-child(2) { --ink: var(--porter); --r: 3deg; }
+.records li:nth-child(3) { --ink: var(--hop); --r: -2deg; }
+.records li:nth-child(4) { --ink: var(--navy); --r: 5deg; }
+.records li:nth-child(5) { --ink: var(--amber-ink); --r: -5deg; }
+.records li:nth-child(6) { --ink: var(--rasp-deep); --r: 2deg; }
 
-footer { border-top: 1px solid var(--line); padding-top: 18px; color: var(--muted); font-size: .85rem; display: grid; gap: 6px; }
-@media (prefers-reduced-motion: no-preference) {
-  .hero, .sour { animation: rise .7s ease-out both; }
-  .sour { animation-delay: .1s; }
-  @keyframes rise { from { transform: translateY(10px); } to { transform: none; } }
+footer { color: var(--on-table-dim); font-size: .88rem; display: grid; gap: 6px; max-width: 72ch; border-top: 1px solid rgb(255 255 255 / .12); padding-top: 18px; }
+
+@media (max-width: 860px) {
+  .hero, .mats, .lists { grid-template-columns: minmax(0, 1fr); }
+  .lists > * { margin-top: 0 !important; }
+  .records { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 }
+@media (max-width: 600px) {
+  main { gap: 44px; padding-top: 28px; }
+  .sour { grid-template-columns: minmax(0, 1fr); justify-items: center; padding: 30px 22px; }
+  .legend { width: 100%; }
+  .facts { gap: 12px 8px; }
+  .records { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Один момент руху: бірдекелі лягають на стіл */
+@media (prefers-reduced-motion: no-preference) {
+  .drop { animation: land .9s cubic-bezier(.16, 1, .3, 1) both; animation-delay: calc(var(--i, 0) * 70ms); }
+  @keyframes land { from { transform: translateY(-14px) scale(1.06) rotate(calc(var(--r) - 6deg)); } }
+}
+@media (prefers-reduced-motion: reduce) { .flip .card { transition: none; } }
 </style>
 </head>
 <body>
-
 <main>
-  <section class="hero">
-    <div class="eyebrow">Pubbratym · 07.10.2025 — 05.10.2026</div>
-    <h1>Кириле, ось що ти <em>випив</em> за рік</h1>
-    <div class="pour"><div class="big num">1 335</div><span>пивних позицій на твоїй картці</span></div>
-    <div class="facts num">
-      <div><b>91</b><small>вечір у барі</small></div>
-      <div><b>190</b><small>різних сортів</small></div>
-      <div><b>30</b><small>пивоварень</small></div>
-      <div><b>54</b><small>стилі за Untappd</small></div>
-      <div><b>4,8%</b><small>середня міцність</small></div>
-      <div><b>205 тис.</b><small>грн за цінами меню</small></div>
+
+  <section class="hero" aria-label="Підсумок року">
+    <div class="coaster round hero-coaster drop num">
+      <span class="wet" aria-hidden="true"></span>
+      <span class="label">Pubbratym · 1 січня — 7 жовтня 2026</span>
+      <h1>Кирилів пивний рік</h1>
+      <div class="big">1 107</div>
+      <p>пивних позицій на твоїй картці</p>
+    </div>
+    <ul class="facts num">
+      <li class="coaster round drop" style="--i:1"><b>72</b><small>вечори в барі</small></li>
+      <li class="coaster round drop" style="--i:2"><b>150</b><small>різних сортів</small></li>
+      <li class="coaster round drop" style="--i:3"><b>26</b><small>пивоварень</small></li>
+      <li class="coaster round drop" style="--i:4"><b>46</b><small>стилів за Untappd</small></li>
+      <li class="coaster round drop" style="--i:5"><b>4,7%</b><small>середня міцність</small></li>
+      <li class="coaster round drop" style="--i:6"><b>171К</b><small>грн за цінами меню</small></li>
+    </ul>
+  </section>
+
+  <section class="coaster sour num" aria-label="Стиль року">
+    <div class="donut" role="img" aria-label="Частки стилів: сауер 60%, IPA 7%, портер і стаут 7%, лагер і пілс 6%, сидр 4%, ель та інше 4%, пшеничне 3%, без даних 8%">
+      <b>60%</b><span>сауери</span>
+    </div>
+    <div>
+      <h2>Ти людина кислого</h2>
+      <p>Шість із десяти позицій року — сауери: смузі, фруктові, берлінери, гозе, навіть томатні.</p>
+      <ul class="legend">
+        <li style="--c:var(--board)">Сауер <span>662</span></li>
+        <li style="--c:var(--lemon)">IPA <span>81</span></li>
+        <li style="--c:var(--porter)">Портер і стаут <span>76</span></li>
+        <li style="--c:var(--apricot)">Лагер і пілс <span>72</span></li>
+        <li style="--c:#f7b6cb">Сидр <span>50</span></li>
+        <li style="--c:var(--navy)">Ель та інше <span>40</span></li>
+        <li style="--c:var(--hop)">Пшеничне <span>38</span></li>
+        <li style="--c:var(--rasp-deep)">Без даних <span>91</span></li>
+      </ul>
     </div>
   </section>
 
-  <section class="sour">
-    <div class="eyebrow">Твій стиль року</div>
-    <div class="big num">57%</div>
-    <p>усього випитого — сауери. Смузі, фруктові, берлінери, гозе, навіть томатні. Ти людина кислого.</p>
-    <div class="stack" role="img" aria-label="Частки стилів: сауер 57%, IPA 9%, лагер і пілс 7%, портер і стаут 6%, ель 5%, сидр 4%, пшеничне 3%, невідомо 9%">
-      <i style="flex:756;background:var(--bg)"></i>
-      <i style="flex:123.5;background:#7a2a5e"></i>
-      <i style="flex:96.5;background:#a8487f"></i>
-      <i style="flex:78;background:#5a1d47"></i>
-      <i style="flex:62.5;background:#c26a98"></i>
-      <i style="flex:56.5;background:#e98fb7"></i>
-      <i style="flex:38;background:#ffd0e1"></i>
-      <i style="flex:124.5;background:transparent"></i>
-    </div>
-    <div class="legend">
-      <span style="--c:var(--bg)">Сауер 756</span>
-      <span style="--c:#7a2a5e">IPA 124</span>
-      <span style="--c:#a8487f">Лагер і пілс 97</span>
-      <span style="--c:#5a1d47">Портер і стаут 78</span>
-      <span style="--c:#c26a98">Ель 63</span>
-      <span style="--c:#e98fb7">Сидр 57</span>
-      <span style="--c:#ffd0e1">Пшеничне 38</span>
-      <span style="--c:color-mix(in srgb, var(--bg) 25%, var(--sour))">Без даних 125</span>
-    </div>
-  </section>
-
-  <section>
-    <div class="eyebrow">Топ сортів</div>
-    <h2>Твоя ротація</h2>
-    <ol class="rank num">
-      <li><span class="pos">1</span><span class="name">Berliner Weisse<small>MOVA brewing co.</small></span><span class="cnt">×80</span></li>
-      <li><span class="pos">2</span><span class="name">Gozel 2.0<small>ШО</small></span><span class="cnt">×60</span></li>
-      <li><span class="pos">3</span><span class="name">Porter<small>Brater</small></span><span class="cnt">×35</span></li>
-      <li><span class="pos">4</span><span class="name">Каберне Фран<small>Berryland, сидр</small></span><span class="cnt">×32</span></li>
-      <li><span class="pos">5</span><span class="name">Italian Pilsner<small>Brater</small></span><span class="cnt">×28</span></li>
-      <li><span class="pos">6</span><span class="name">Персиковий берлінер<small>MOVA brewing co.</small></span><span class="cnt">×27</span></li>
-    </ol>
-  </section>
-
-  <section class="two">
-    <div style="display:grid;gap:20px;min-width:0">
-      <div class="eyebrow">Пивоварні</div>
-      <ol class="rank num">
-        <li><span class="pos">1</span><span class="name">ШО</span><span class="cnt">157</span></li>
-        <li><span class="pos">2</span><span class="name">MOVA</span><span class="cnt">138</span></li>
-        <li><span class="pos">3</span><span class="name">Kyiv Local Brewery</span><span class="cnt">119</span></li>
-        <li><span class="pos">4</span><span class="name">Underwood</span><span class="cnt">104</span></li>
-        <li><span class="pos">5</span><span class="name">Brater</span><span class="cnt">96</span></li>
+  <section class="lists num" aria-label="Рейтинги">
+    <div class="coaster square">
+      <h2>Твоя ротація</h2>
+      <ol class="rank">
+        <li><span class="pos">1</span><span class="name">Berliner Weisse<small>MOVA</small></span><span class="cnt">80½</span></li>
+        <li><span class="pos">2</span><span class="name">Gozel 2.0<small>ШО</small></span><span class="cnt">60</span></li>
+        <li><span class="pos">3</span><span class="name">Porter<small>Brater</small></span><span class="cnt">35½</span></li>
+        <li><span class="pos">4</span><span class="name">Italian Pilsner<small>Brater</small></span><span class="cnt">28</span></li>
+        <li><span class="pos">5</span><span class="name">Абрикос · персик · маракуя<small>Citadel</small></span><span class="cnt">27</span></li>
+        <li><span class="pos">6</span><span class="name">Ведрик<small>Underwood</small></span><span class="cnt">26½</span></li>
       </ol>
     </div>
-    <div style="display:grid;gap:20px;min-width:0">
-      <div class="eyebrow">Стилі за Untappd</div>
-      <ol class="rank num">
-        <li><span class="pos">1</span><span class="name">Sour · Smoothie / Pastry</span><span class="cnt">203</span></li>
-        <li><span class="pos">2</span><span class="name">Sour · Fruited</span><span class="cnt">148</span></li>
-        <li><span class="pos">3</span><span class="name">Fruited Berliner Weisse</span><span class="cnt">105</span></li>
-        <li><span class="pos">4</span><span class="name">Berliner Weisse</span><span class="cnt">102</span></li>
+    <div class="coaster square">
+      <h3>Пивоварні</h3>
+      <ol class="rank">
+        <li><span class="pos">1</span><span class="name">ШО</span><span class="cnt">140½</span></li>
+        <li><span class="pos">2</span><span class="name">MOVA</span><span class="cnt">117</span></li>
+        <li><span class="pos">3</span><span class="name">Brater</span><span class="cnt">91½</span></li>
+        <li><span class="pos">4</span><span class="name">Kyiv Local Brewery</span><span class="cnt">75</span></li>
+        <li><span class="pos">5</span><span class="name">Underwood</span><span class="cnt">72½</span></li>
+      </ol>
+    </div>
+    <div class="coaster square">
+      <h3>Стилі за Untappd</h3>
+      <ol class="rank">
+        <li><span class="pos">1</span><span class="name">Sour · Smoothie / Pastry</span><span class="cnt">158</span></li>
+        <li><span class="pos">2</span><span class="name">Sour · Fruited</span><span class="cnt">137½</span></li>
+        <li><span class="pos">3</span><span class="name">Berliner Weisse</span><span class="cnt">102</span></li>
+        <li><span class="pos">4</span><span class="name">Fruited Berliner Weisse</span><span class="cnt">79½</span></li>
         <li><span class="pos">5</span><span class="name">Gose</span><span class="cnt">66</span></li>
       </ol>
     </div>
   </section>
 
-  <section>
-    <div class="eyebrow">По місяцях</div>
-    <h2>Липень — пік: 194 позиції</h2>
-    <svg class="chart num" id="months" viewBox="0 0 700 230" role="img" aria-label="Позиції по місяцях з жовтня 2025 по жовтень 2026, пік у липні — 194"></svg>
-    <p>Жовтень 2025 і жовтень 2026 — неповні місяці.</p>
-  </section>
-
-  <section>
-    <div class="eyebrow">Дні тижня</div>
-    <h2>Неділя — твій день</h2>
-    <svg class="chart num" id="days" viewBox="0 0 700 200" role="img" aria-label="Позиції по днях тижня: неділя 281, субота 264, понеділок 218, п'ятниця 211, четвер 170, середа 119, вівторок 75"></svg>
-  </section>
-
-  <section>
-    <div class="eyebrow">Рекорди</div>
-    <h2>Найяскравіше за рік</h2>
-    <div class="records">
-      <div><span class="eyebrow">Найбільший вечір</span><b>1 лютого — 70 позицій</b><small>Явно не сам.</small></div>
-      <div><span class="eyebrow">Найміцніше</span><b>Гонір Imperial Sour</b><small>11% — навіть найміцніше в тебе кисле</small></div>
-      <div><span class="eyebrow">Найвищий рейтинг Untappd</span><b>TYT Nightberry Puff</b><small>4,37 · смородина, вишня, маршмелоу</small></div>
-      <div><span class="eyebrow">Найнижчий рейтинг</span><b>Berryland Merlot</b><small>2,89 · сидр, але ти його пив</small></div>
-      <div><span class="eyebrow">Перше пиво року</span><b>Hoppy Hog Banana Weisse</b><small>19 жовтня 2025</small></div>
-      <div><span class="eyebrow">Останнє</span><b>Лучан Бланш</b><small>5 жовтня 2026</small></div>
+  <section class="mats num" aria-label="Коли ти пив">
+    <div class="mat">
+      <h2>Липень — пік: <em>194</em></h2>
+      <p>Позиції по місяцях. Один шип — двадцять позицій. Жовтень ще триває.</p>
+      <svg class="chart" id="months" role="img" aria-label="Позиції по місяцях 2026: січень 113, лютий 185, березень 107, квітень 171, травень 42, червень 163, липень 194, серпень 40, вересень 83, жовтень 11"></svg>
+    </div>
+    <div class="mat">
+      <h2>Неділя — <em>твій день</em></h2>
+      <p>Позиції по днях тижня.</p>
+      <svg class="chart" id="days" role="img" aria-label="Позиції по днях тижня: понеділок 185, вівторок 72, середа 84, четвер 155, п'ятниця 143, субота 218, неділя 251"></svg>
     </div>
   </section>
 
+  <section aria-labelledby="rec">
+    <div class="records-head">
+      <h2 id="rec">Рекорди року</h2>
+      <p>Переверни бірдекель.</p>
+    </div>
+    <ul class="records">
+      <li><button class="flip" aria-pressed="false"><span class="card">
+        <span class="coaster round face front"><span class="label">Найбільший вечір</span><span class="tap">переверни</span></span>
+        <span class="coaster round face back"><b>1 лютого — 70 позицій</b><small>Явно не сам.</small></span></span></button></li>
+      <li><button class="flip" aria-pressed="false"><span class="card">
+        <span class="coaster round face front"><span class="label">Найміцніше</span><span class="tap">переверни</span></span>
+        <span class="coaster round face back"><b>Гонір Imperial Sour</b><small>11% — навіть найміцніше в тебе кисле</small></span></span></button></li>
+      <li><button class="flip" aria-pressed="false"><span class="card">
+        <span class="coaster round face front"><span class="label">Найвищий рейтинг Untappd</span><span class="tap">переверни</span></span>
+        <span class="coaster round face back"><b>TYT Nightberry Puff</b><small>4,37 · смородина, вишня, маршмелоу</small></span></span></button></li>
+      <li><button class="flip" aria-pressed="false"><span class="card">
+        <span class="coaster round face front"><span class="label">Найнижчий рейтинг</span><span class="tap">переверни</span></span>
+        <span class="coaster round face back"><b>Berryland Merlot</b><small>2,89 · сидр, але ти його пив</small></span></span></button></li>
+      <li><button class="flip" aria-pressed="false"><span class="card">
+        <span class="coaster round face front"><span class="label">Перше пиво року</span><span class="tap">переверни</span></span>
+        <span class="coaster round face back"><b>KLB Alco Free IPA</b><small>8 січня — рік почався з безалкогольного</small></span></span></button></li>
+      <li><button class="flip" aria-pressed="false"><span class="card">
+        <span class="coaster round face front"><span class="label">Останнє</span><span class="tap">переверни</span></span>
+        <span class="coaster round face back"><b>Лучан Бланш</b><small>5 жовтня</small></span></span></button></li>
+    </ul>
+  </section>
+
   <footer>
-    <span>Дані: чеки Poster на картку «Boss Кирило» з 07.10.2025, стилі й міцність — Untappd.</span>
-    <span>Позиція — один рядок у чеку: келих, літр чи банка. Сюди входить усе, закрите на твою картку, разом із пригощаннями. Для 125 позицій стиль не знайшовся.</span>
+    <span>Дані: чеки Poster на картку «Boss Кирило» з 1 січня по 7 жовтня 2026, стилі, міцність і рейтинги — Untappd.</span>
+    <span>Позиція — один рядок у чеку: келих, літр чи банка; половинки — розлиті навпіл. Сюди входить усе, закрите на твою картку, разом із пригощаннями. Для 91 позиції стиль не знайшовся.</span>
   </footer>
 </main>
 
 <script>
 const NS = "http://www.w3.org/2000/svg";
 function el(tag, attrs, text) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; return e; }
-function bars(id, data, h, maxV) {
-  const svg = document.getElementById(id), W = 700, top = 22, bottom = 26, gap = 10;
-  const bw = (W - gap * (data.length - 1)) / data.length, scale = (h - top - bottom) / maxV;
+// Килимок із шипами: колонка шипів на значення, заповнений шип — 20 позицій.
+function mat(id, data, rows) {
+  const svg = document.getElementById(id), step = 22, r = 7.5, colW = 34, top = 26, W = data.length * colW, H = top + rows * step + 26;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
   const best = Math.max(...data.map(d => d[1]));
   data.forEach(([label, v], i) => {
-    const x = i * (bw + gap), bh = v * scale, y = h - bottom - bh, hi = v === best;
-    svg.append(el("rect", { x, y, width: bw, height: bh, rx: 4, fill: hi ? "var(--apricot)" : "var(--sour)", opacity: hi ? 1 : .55 }));
-    svg.append(el("text", { x: x + bw / 2, y: y - 6, "text-anchor": "middle", class: hi ? "val hi" : "val" }, Math.round(v)));
-    svg.append(el("text", { x: x + bw / 2, y: h - 8, "text-anchor": "middle" }, label));
+    const cx = i * colW + colW / 2, filled = Math.round(v / 20), hi = v === best;
+    for (let k = 0; k < rows; k++)
+      svg.append(el("circle", { cx, cy: top + (rows - 1 - k) * step + step / 2, r, fill: k < filled ? (hi ? "var(--apricot)" : "var(--rasp)") : "var(--nub)" }));
+    svg.append(el("text", { x: cx, y: top + (rows - filled) * step - 6, "text-anchor": "middle", class: hi ? "v hi" : "v" }, Math.round(v)));
+    svg.append(el("text", { x: cx, y: H - 4, "text-anchor": "middle" }, label));
   });
 }
-bars("months", [["жов", 63.5], ["лис", 80.5], ["гру", 84.5], ["січ", 112.5], ["лют", 185], ["бер", 107], ["кві", 171], ["тра", 41.5], ["чер", 162.5], ["лип", 194], ["сер", 40], ["вер", 82.5], ["жов", 11]], 230, 200);
-bars("days", [["пн", 217.5], ["вт", 74.5], ["ср", 118.5], ["чт", 170], ["пт", 210.5], ["сб", 263.5], ["нд", 281]], 200, 290);
+mat("months", [["січ", 112.5], ["лют", 185], ["бер", 107], ["кві", 171], ["тра", 41.5], ["чер", 162.5], ["лип", 194], ["сер", 40], ["вер", 82.5], ["жов", 11]], 10);
+mat("days", [["пн", 185], ["вт", 71.5], ["ср", 84], ["чт", 155], ["пт", 142.5], ["сб", 218], ["нд", 251]], 13);
+document.querySelectorAll(".flip").forEach(b => b.addEventListener("click", () => b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") !== "true")));
 </script>
 </body>
 </html>
